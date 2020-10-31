@@ -5,7 +5,7 @@ const Convert = ({ language, text }) => {
     const [translatedText, setTranslatedText] = useState('');
 
     useEffect(() => {
-        if (text && text != '') {
+        if (text && text !== '') {
             const translate = async () => {
                 let { data } = await translator.post('', {}, {
                     params: {

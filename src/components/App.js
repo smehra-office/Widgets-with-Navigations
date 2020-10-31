@@ -4,6 +4,7 @@ import Search from './Search';
 import Dropdown from './Dropdown';
 import Translate from './Translate';
 import Router from './Router';
+import Header from './Header';
 
 const items = [
     {
@@ -43,6 +44,7 @@ export default () => {
 
     return (
         <div className="ui container" style={{ 'marginTop': '2%' }}>
+            <Header />
             <Router path='/'>
                 <Accordion items={items} />
             </Router>
