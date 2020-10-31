@@ -3,6 +3,7 @@ import Accordion from './Accordion';
 import Search from './Search';
 import Dropdown from './Dropdown';
 import Translate from './Translate';
+import Router from './Router';
 
 const items = [
     {
@@ -34,21 +35,26 @@ const options = [
     }
 ];
 
-function showAccordion() {
-    if (window.location.pathname == '/')
-        return <Accordion items={items} />
-}
-
-function showTranslate() {
-    if (window.location.pathname == '/translate')
-        return <Translate />
-}
-
 export default () => {
+    const [selected, SelectedChange] = useState(options[0]);
+
+    //Here we pass the component JSX in between the Router tags so that it can directly render 
+    //the mentioned components via props.children
+
     return (
         <div className="ui container" style={{ 'marginTop': '2%' }}>
-            {showAccordion()}
-            {showTranslate()}
+            <Router path='/'>
+                <Accordion items={items} />
+            </Router>
+            <Router path='/translate'>
+                <Translate />
+            </Router>
+            <Router path='/search'>
+                <Search />
+            </Router>
+            <Router path='/dropdown'>
+                <Dropdown label="select a color" options={options} selected={selected} onSelectedChange={SelectedChange} />
+            </Router>
         </div>
     );
 };
